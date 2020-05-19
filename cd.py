@@ -12,7 +12,7 @@ class CD:
         self.remaining_capacity = self.capacity
         self.index = index
 
-    def add_data(self, item: cd_item):
+    def add_data(self, item: cd_item.CdItem):
         if self.remaining_capacity < item.get_size():
             raise Exception('CD is full')
 

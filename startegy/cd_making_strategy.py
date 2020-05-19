@@ -10,12 +10,14 @@ class CdMakingStrategy:
 
     cd_capacity: float
     used_cd_list: List[CD]
+    tmp_cd_items: List[CdItem]
     unused_cd_capacity: float
 
     def __init__(self):
         self.cd_capacity = CD.SIZE
         self.used_cd_list = []
         self.unused_cd_capacity = 0
+        self.tmp_cd_items = []
 
     def add_item(self, cd_item: CdItem, cd_index):
         if cd_index < 0 or cd_index >= len(self.used_cd_list):
@@ -30,7 +32,8 @@ class CdMakingStrategy:
             total += cd.capacity
         return total
 
-    def make(self, items: List[CdItem]):
+    def make_cds(self, items: List[CdItem]):
+        self.tmp_cd_items = items
         for item in items:
             self.apply_strategy(item)
 
@@ -40,4 +43,8 @@ class CdMakingStrategy:
 
     @abstractmethod
     def apply_strategy(self, item: CdItem):
+        raise NotImplementedError
+
+    @abstractmethod
+    def get_name(self):
         raise NotImplementedError

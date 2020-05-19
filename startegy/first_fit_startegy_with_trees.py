@@ -1,16 +1,19 @@
 import sys
 
-from cd_item import CdItem
-from cd_making_strategy import CdMakingStrategy
+from startegy.cd_making_strategy import CdMakingStrategy
 from util.tree import Tree
+from cd_item import CdItem
 
 
-class FirstFitStrategy(CdMakingStrategy):
+class FirstFitStrategyWithTrees(CdMakingStrategy):
 
     def __init__(self):
         super().__init__()
         self.tree = Tree()
         self.cd_number = 0
+
+    def get_name(self):
+        return "first_fit_with_avl_trees"
 
     def apply_strategy(self, item: CdItem):
         index = self.tree.find(item.get_size())
